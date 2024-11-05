@@ -25,7 +25,6 @@ def open_website():
             ],
         )
 
-        print(chat_completion.choices[0].message.content)
         page.fill('input[name="answer"]', chat_completion.choices[0].message.content)
 
         page.click("button#submit")

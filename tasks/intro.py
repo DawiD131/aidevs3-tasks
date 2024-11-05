@@ -11,4 +11,5 @@ data = {
 }
 
 response = requests.post("https://poligon.aidevs.pl/verify", json=data)
+
 print(response.json())
