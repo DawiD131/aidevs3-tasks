@@ -1,4 +1,5 @@
 import requests
+from utils import get_tasks_api_key
 
 answerResp = requests.get("https://poligon.aidevs.pl/dane.txt")
 
@@ -6,7 +7,7 @@ answer = answerResp.text.splitlines()
 
 data = {
     "task": "POLIGON",
-    "apikey": "a6f443b2-e7fc-4f27-ac4e-c0ec9b3c370c",
+    "apikey": get_tasks_api_key(),
     "answer": answer,
 }
 

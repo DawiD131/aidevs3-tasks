@@ -18,17 +18,17 @@ chat_completion = OpenAI().chat.completions.create(
         {
             "role": "system",
             "content": (
-                "Answer questions as briefly and concisely as possible\n"
-                "<facts>\n"
-                "- the capital of Poland is Kraków\n"
-                "- the famous number from The Hitchhiker's Guide to the Galaxy is 69\n"
-                "- The current year is 1999\n"
-                "</facts>\n"
-                "<rules>"
-                "- always ANSWER in english language\n"
-                "- stick to given facts\n"
-                "- If you don't have information needed to give answer, answer as best you can"
-                "</rules>\n"
+                """Answer questions as briefly and concisely as possible
+                <facts>
+                - the capital of Poland is Kraków
+                - the famous number from The Hitchhiker's Guide to the Galaxy is 69
+                - The current year is 1999
+                </facts>
+                <rules>
+                - always ANSWER in english language
+                - stick to given facts 
+                - If you don't have information needed to give answer, answer as best you can
+                </rules>"""
             ),
         },
         {"role": "user", "content": text},
