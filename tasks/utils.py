@@ -6,6 +6,7 @@ load_dotenv()
 
 
 def complete_task(task_name, answer):
+    print(f"Completing task {task_name} with answer {answer}")
     response = requests.post(
         "https://centrala.ag3nts.org/report",
         json={

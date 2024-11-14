@@ -11,7 +11,6 @@ text = response_json["text"]
 msgID = response_json["msgID"]
 
 print("question", text)
-
 chat_completion = OpenAI().chat.completions.create(
     model="gpt-4o",
     messages=[
