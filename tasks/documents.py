@@ -21,7 +21,7 @@ facts = "\n####\n".join(fact["content"] for fact in facts_files)
 
 def tag_document(content):
     resp = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4o-mini",
         messages=[
             {
                 "role": "system",
