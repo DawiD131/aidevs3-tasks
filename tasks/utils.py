@@ -18,6 +18,7 @@ def complete_task(task_name, answer):
             "apikey": os.getenv("TASKS_API_KEY"),
             "answer": answer,
         },
+        timeout=(30, 30),  # (connect timeout, read timeout)
     )
     print(response.json())
     return response.json()
