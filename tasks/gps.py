@@ -26,20 +26,27 @@ def perform_db_query(query):
     return tables_resp.json()["reply"]
 
 
-def get_people_by_location(location):
+def get_people_by_location():
     resp = post(
         "https://centrala.ag3nts.org/places",
-        json={"apikey": get_tasks_api_key(), "query": location},
+        json={
+            "apikey": get_tasks_api_key(),
+            "query": {
+                "lat": "123.396256",
+                "lon": "123.508731",
+            },
+        },
     )
-    return resp.json()["message"]
+    return resp.json()
 
 
 def gps(userID, username):
+    print(userID)
     resp = post(
         "https://centrala.ag3nts.org/gps",
         json={"apikey": get_tasks_api_key(), "userID": userID},
     )
-    return {"location": resp.json()["message"], "username": username}
+    return resp.text
 
 
 def plan(question, previous_execution_result):
@@ -177,27 +184,27 @@ tools = {
 
 previous_execution_result = []
 
-while True:
-    plan_result = json.loads(plan(questions["question"], previous_execution_result))
+# while True:
+#     plan_result = json.loads(plan(questions["question"], previous_execution_result))
 
-    tool_name = plan_result["tool_name"]
-    tool_params = plan_result["arguments"]
+#     tool_name = plan_result["tool_name"]
+#     tool_params = plan_result["arguments"]
 
-    tool_result = tools[tool_name](
-        {
-            key: value if isinstance(value, list) else str(value)
-            for key, value in tool_params.items()
-        }
-    )
+#     tool_result = tools[tool_name](
+#         {
+#             key: value if isinstance(value, list) else str(value)
+#             for key, value in tool_params.items()
+#         }
+#     )
 
-    if tool_name == "final_answer":
-        break
+#     if tool_name == "final_answer":
+#         break
 
-    previous_execution_result.append(
-        f"""
-        <{tool_name}>
-            <arguments>{json.dumps(tool_params)}</arguments>
-            <result>{tool_result}</result>
-        </{tool_name}> \n
-        """
-    )
+#     previous_execution_result.append(
+#         f"""
+#         <{tool_name}>
+#             <arguments>{json.dumps(tool_params)}</arguments>
+#             <result>{tool_result}</result>
+#         </{tool_name}> \n
+#         """
+#     )
